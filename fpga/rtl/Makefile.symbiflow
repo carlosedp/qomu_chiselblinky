@@ -1,0 +1,59 @@
+.PHONY:${BUILDDIR}
+ 
+current_dir := /home/ql/data/fpga/rtl
+TOP := Toplevel
+VERILOG := ${current_dir}/Toplevel.v \
+${current_dir}/pll_qomu.v  
+PARTNAME := WR42
+DEVICE  := ql-eos-s3_wlcsp
+PCF := ${current_dir}/qomu.pcf
+SDC := ${current_dir}/build/Toplevel_dummy.sdc
+BUILDDIR := build
+
+HEX_FILES := ${current_dir}/*.hex
+
+all: ${BUILDDIR}/${TOP}.bit
+
+${BUILDDIR}/${TOP}.eblif: ${VERILOG} ${PCF}
+  ifneq ("$(wildcard $(HEX_FILES))","")
+	$(shell cp ${current_dir}/*.hex ${BUILDDIR})
+  endif
+	cd ${BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${DEVICE} -p ${PCF} -P ${PART} 2>&1 > /home/ql/data/fpga/rtl/build/Toplevel.log
+
+${BUILDDIR}/${TOP}.net: ${BUILDDIR}/${TOP}.eblif
+	cd ${BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /home/ql/data/fpga/rtl/build/Toplevel.log
+
+${BUILDDIR}/${TOP}.place: ${BUILDDIR}/${TOP}.net ${PCF}
+	cd ${BUILDDIR} && symbiflow_place -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME} -s ${SDC} 2>&1 > /home/ql/data/fpga/rtl/build/Toplevel.log
+
+${BUILDDIR}/${TOP}.route: ${BUILDDIR}/${TOP}.place
+	cd ${BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /home/ql/data/fpga/rtl/build/Toplevel.log
+
+${BUILDDIR}/${TOP}.fasm: ${BUILDDIR}/${TOP}.route
+	cd ${BUILDDIR} && symbiflow_write_fasm -e ${TOP}.eblif -d ${DEVICE}
+
+${BUILDDIR}/${TOP}.bit: ${BUILDDIR}/${TOP}.fasm
+	cd ${BUILDDIR} && symbiflow_write_bitstream -d ${DEVICE} -f ${TOP}.fasm -P ${PARTNAME} -b ${TOP}.bit
+
+${BUILDDIR}/${TOP}_bit.h: ${BUILDDIR}/${TOP}.bit
+	cd ${BUILDDIR} && symbiflow_write_bitheader -b ${TOP}.bit
+
+${BUILDDIR}/${TOP}.bin: ${BUILDDIR}/${TOP}.bit
+	cd ${BUILDDIR} && symbiflow_write_binary -b ${TOP}.bit
+
+${BUILDDIR}/${TOP}.jlink: ${BUILDDIR}/${TOP}.bit
+	cd ${BUILDDIR} && symbiflow_write_jlink -f ${TOP}.fasm -P ${PACKAGENAME} -b ${TOP}.bit
+
+${BUILDDIR}/${TOP}.openocd: ${BUILDDIR}/${TOP}.bit
+	cd ${BUILDDIR} && symbiflow_write_openocd -f ${TOP}.fasm -P ${PACKAGENAME} -b ${TOP}.bit
+
+${BUILDDIR}/${TOP}_jlink.h: ${BUILDDIR}/${TOP}.jlink
+	cd ${BUILDDIR} && symbiflow_write_jlinkheader
+
+${BUILDDIR}/${TOP}.post_v: ${BUILDDIR}/${TOP}.bit
+	cd ${BUILDDIR} && symbiflow_write_fasm2bels -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME}
+	cd ${BUILDDIR} && symbiflow_analysis -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /home/ql/data/fpga/rtl/build/Toplevel.log
+
+clean:
+	rm -rf ${BUILDDIR}
+

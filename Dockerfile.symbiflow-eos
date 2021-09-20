@@ -1,0 +1,59 @@
+FROM ubuntu:20.04 as base
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# install depedencies that are not yet in the installer
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    gnupg \
+    libcanberra-gtk-module \
+    libtbb-dev\
+    make \
+    wget \
+    xz-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+# make /bin/sh symlink to bash instead of dash:
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
+# # add ARGs so that these can be passed in while doing a docker build, the following will be default values
+# ARG TAG=v1.3.2
+# ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
+# # Appending all of these commands (mostly the chmod 755 commands) saved about 1.9 GB in image size
+# RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/${TAG}/Symbiflow_${TAG}.gz.run && \
+#     chmod 755 Symbiflow_${TAG}.gz.run && \
+#     ./Symbiflow_${TAG}.gz.run && \
+#     rm Symbiflow_${TAG}.gz.run && \
+#     chmod 755 /opt/symbiflow && \
+#     chmod 755 /opt/symbiflow/eos-s3 && \
+#     chmod -R 755 /opt/symbiflow/eos-s3/conda && \
+#     chmod -R 755 /opt/symbiflow/eos-s3/quicklogic-arch-defs
+
+
+WORKDIR /
+RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
+
+SHELL ["/bin/bash", "-c"]
+RUN  cd /qorc-sdk && \
+    source ./envsetup.sh && \
+    rm -rf /qorc-sdk/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+
+ENV TOOLCHAIN_VER=v1.3.1
+ENV INSTALL_DIR="/qorc-sdk/fpga_toolchain_install/${TOOLCHAIN_VER}/"
+ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch-defs/bin/python:${INSTALL_DIR}/conda/bin:$PATH"
+ENV PATH="/qorc-sdk/arm_toolchain_install/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH:"
+ENV PROJ_ROOT=/qorc-sdk
+
+ARG USER=ql
+ENV USER=${USER}
+ARG UID=1000
+ARG GID=1000
+RUN addgroup --gid ${GID} ${USER}
+RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
+RUN chown -R ql:ql /qorc-sdk
+RUN chmod 755 /qorc-sdk
+
+USER ${USER}
+WORKDIR /home/${USER}
