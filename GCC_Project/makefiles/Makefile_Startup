@@ -18,11 +18,11 @@ $(OUTPUT_PATH)/%.o:$(SRC_PATH)/%.c $(DEPEND_PATH)/%.d
 -include $(D_FILES))
 
 $(DEPEND_PATH)/%.d: ;
-.PRECIOUS: $(DEPEND_PATH)/%.d 
+.PRECIOUS: $(DEPEND_PATH)/%.d
 
 DELETEME=${D_FILES} ${O_FILES}
 clean:
 	@echo Clean ...
 ifneq (,${DELETEME})
-	-$(HIDE)$(RM) $(DELETEME)   
+	-$(HIDE)$(RM) $(DELETEME)
 endif

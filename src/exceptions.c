@@ -15,13 +15,13 @@
  *==========================================================*/
 
 /*==========================================================
- *                                                          
+ *
  *    File   : exceptions.c
  *    Purpose: This file contains the default exception handlers
  *             and exception table.
  *
  *=========================================================*/
- 
+
 #include "Fw_global_config.h"
 #include <stdio.h>
 #include <assert.h>
@@ -141,7 +141,7 @@ void HardFault_Handler(void) {
  * @param  None
  * @retval None
  */
-void NMI_Handler(void) 
+void NMI_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -151,7 +151,7 @@ void NMI_Handler(void)
  * @param  None
  * @retval None
  */
-void MemManage_Handler(void) 
+void MemManage_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -161,7 +161,7 @@ void MemManage_Handler(void)
  * @param  None
  * @retval None
  */
-void BusFault_Handler(void) 
+void BusFault_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -181,12 +181,12 @@ void UsageFault_Handler(void)
  * @param  None
  * @retval None
  */
-void DebugMon_Handler(void) 
+void DebugMon_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void SramSleepHandler(void) 
+void SramSleepHandler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -222,17 +222,17 @@ void CpuWdtInt_Handler(void) {
 	NVIC_ClearPendingIRQ(CpuWdtInt_IRQn);
 }
 
-void CpuWdtRst_Handler(void) 
+void CpuWdtRst_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void BusTimeout_Handler(void) 
+void BusTimeout_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Fpu_Handler(void) 
+void Fpu_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -242,12 +242,12 @@ void Pkfb_Handler(void) {
 	INTR_CTRL->OTHER_INTR &= PKFB_INTR_DETECT;
 }
 
-void I2s_Handler(void) 
+void I2s_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Audio_Handler(void) 
+void Audio_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -300,7 +300,7 @@ void CfgDma_Handler(void) {
 void PmuTimer_Handler(void) {
 }
 
-void AdcDone_Handler(void) 
+void AdcDone_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -311,7 +311,7 @@ void RtcAlarm_Handler(void) {
     HAL_RTC_ISR();
 }
 
-void ResetInt_Handler(void) 
+void ResetInt_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -424,7 +424,7 @@ void FB_ConfigureInterrupt ( UINT32_t fbIrq, UINT8_t type, UINT8_t polarity, UIN
 
 
 
-void SensorGpio_Handler(void) 
+void SensorGpio_Handler(void)
 {
     spurious_interrupt(__LINE__);
 }
@@ -436,62 +436,62 @@ int OD_On;
 //extern volatile h_uint8 LightExpFlag;
 
 
-void M4SramSleep_Handler(void) 
+void M4SramSleep_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void LDO30_PG_Handler(void) 
+void LDO30_PG_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void LDO50_PG_Handler(void) 
+void LDO50_PG_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void DMIC_Voice_Det_Handler(void) 
+void DMIC_Voice_Det_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void ApPDMClkOn_Handler(void) 
+void ApPDMClkOn_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void ApPDMClkOff_Handler(void) 
+void ApPDMClkOff_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Dmac0BlkDone_Handler(void) 
+void Dmac0BlkDone_Handler(void)
 {
      spurious_interrupt(__LINE__);
 }
 
-void Dmac0BufDone_Handler(void) 
+void Dmac0BufDone_Handler(void)
 {
     spurious_interrupt(__LINE__);
 }
 
-void Dmac1BlkDone_Handler(void) 
+void Dmac1BlkDone_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Dmac1BufDone_Handler(void) 
+void Dmac1BufDone_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma0Done_Handler(void) 
+void Sdma0Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma1Done_Handler(void) 
+void Sdma1Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -501,92 +501,92 @@ void Sdma2Done_Handler(void)
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma3Done_Handler(void) 
+void Sdma3Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma4Done_Handler(void) 
+void Sdma4Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma5Done_Handler(void) 
+void Sdma5Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma6Done_Handler(void)  
+void Sdma6Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma7Done_Handler(void) 
+void Sdma7Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma8Done_Handler(void) 
+void Sdma8Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma9Done_Handler(void) 
+void Sdma9Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma10Done_Handler(void) 
+void Sdma10Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void Sdma11Done_Handler(void) 
+void Sdma11Done_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void SdmaErr_Handler(void) 
+void SdmaErr_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void I2S_SlvM4TxOr_Handler(void) 
+void I2S_SlvM4TxOr_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void SRAM_128KB_Handler(void) 
+void SRAM_128KB_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void LPSD_Voice_Det_Handler(void) 
+void LPSD_Voice_Det_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void FfeWdt_Handler(void) 
+void FfeWdt_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void ApBoot_Handler(void) 
+void ApBoot_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void SwInt2_Handler(void) 
+void SwInt2_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
 
-void SwInt1_Handler(void) 
-{ 
+void SwInt1_Handler(void)
+{
 	/* this is the BLE interrupt */
 	/* Disable the Interrupt */
 	INTR_CTRL->SOFTWARE_INTR_1_EN_M4 &= ~(SW_INTR_1_EN_M4);
-      
+
     //SendBLERxDataReady();
     /* Clear the pending interrupt */
     INTR_CTRL->SOFTWARE_INTR_1 = 0;
@@ -595,7 +595,7 @@ void SwInt1_Handler(void)
     INTR_CTRL->SOFTWARE_INTR_1_EN_M4 = SW_INTR_1_EN_M4;
 }
 
-void Ffe1Msg_Handler(void) 
+void Ffe1Msg_Handler(void)
 {
 	spurious_interrupt(__LINE__);
 }
@@ -603,7 +603,7 @@ void Ffe1Msg_Handler(void)
 
 void FFE_IPC_FIFO_ISR(void);                            // to remove warnings 	function declaration
 
-void Ffe0Msg_Handler(void) 
+void Ffe0Msg_Handler(void)
 {
 #if FFE_DRIVERS
     QL_FFE0MSG_ISR();
@@ -613,58 +613,58 @@ void Ffe0Msg_Handler(void)
 #endif
 }
 
-void sdmaDone0Handler() 
+void sdmaDone0Handler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void sdmaErrorHandler() 
+void sdmaErrorHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
 // Audio Related
-void lpsdVoiceDetHandler() 
+void lpsdVoiceDetHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void dmicVoiceDetHandler() 
+void dmicVoiceDetHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void reservedHandler() 
+void reservedHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void apPdmClockOnHandler() 
+void apPdmClockOnHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void apPdmClockOffHandler() 
+void apPdmClockOffHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void dmac0BlockDoneHandler() 
+void dmac0BlockDoneHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void dmac0BufferDoneHandler() 
+void dmac0BufferDoneHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void dmac1BlockDoneHandler() 
+void dmac1BlockDoneHandler()
 {
 	spurious_interrupt(__LINE__);
 }
 
-void dmac1BufferDoneHandler() 
+void dmac1BufferDoneHandler()
 {
 	spurious_interrupt(__LINE__);
 }

@@ -1,9 +1,9 @@
 .PHONY:${BUILDDIR}
- 
+
 current_dir := /home/ql/data/fpga/rtl
 TOP := Toplevel
 VERILOG := ${current_dir}/Toplevel.v \
-${current_dir}/pll_qomu.v  
+${current_dir}/pll_qomu.v
 PARTNAME := WR42
 DEVICE  := ql-eos-s3_wlcsp
 PCF := ${current_dir}/qomu.pcf

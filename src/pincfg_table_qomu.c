@@ -20,7 +20,7 @@
 
 
 //// Qomu////
-PadConfig pincfg_table[] = 
+PadConfig pincfg_table[] =
 {
   { // setup UART TX
     .ucPin = PAD_44,

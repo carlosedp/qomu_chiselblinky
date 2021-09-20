@@ -15,10 +15,10 @@
  *==========================================================*/
 
 /*==========================================================
- *                                                          
+ *
  *    File   : sec_debug.c
- *    Purpose: 
- *                                                          
+ *    Purpose:
+ *
  *=========================================================*/
 
 #include "Fw_global_config.h"
@@ -65,7 +65,7 @@ void save_assert_info(char* file, int line)
 
 
 void invoke_soft_fault(void)
-{      
+{
         //QL_LOG_INFO_150K("Soft Fault\n");
         dbg_fatal_error("SOFT FAULT\n");
 	{ taskDISABLE_INTERRUPTS(); for( ;; ); }

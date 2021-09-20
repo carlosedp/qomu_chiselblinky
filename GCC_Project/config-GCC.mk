@@ -12,7 +12,7 @@ DASH_O=-Os
 
 #Assembler flags
 export AS_FLAGS= -mcpu=cortex-m4 -mthumb -mlittle-endian -mfloat-abi=hard -mfpu=fpv4-sp-d16 $(DASH_O) -fmessage-length=0 \
-        -fsigned-char -ffunction-sections -fdata-sections  $(DASH_G) -MMD -MP 
+        -fsigned-char -ffunction-sections -fdata-sections  $(DASH_G) -MMD -MP
 
 #Preprocessor macros
 
@@ -50,7 +50,7 @@ export INCLUDE_DIRS=-I"$(PROJ_DIR)" \
                  -I"$(PROJ_ROOT)/BSP/$(BOARD)/inc" \
                  -I"$(PROJ_ROOT)/Libraries/Utils/inc" \
                  -I"$(PROJ_ROOT)/Libraries/DatablockManager/inc"
-    
+
 
 # C compiler flags
 export CFLAGS= $(MACROS) \
@@ -65,7 +65,7 @@ export LD_FLAGS_1= -mcpu=cortex-m4 -mthumb -mlittle-endian -mfloat-abi=hard -mfp
 	-Wl,--fatal-warnings -Wl,-Map,"$(OUTPUT_PATH)/$(OUTPUT_FILE).map" \
             --specs=nano.specs --specs=nosys.specs -Wl,--no-wchar-size-warning \
             -o "$(OUTPUT_PATH)/$(OUTPUT_FILE).elf" -lm\
-    -L$(LIBCMSIS_GCC_DIR) -larm_cortexM4lf_math 
+    -L$(LIBCMSIS_GCC_DIR) -larm_cortexM4lf_math
 
 
 export ELF2BIN_OPTIONS=-O binary

@@ -15,10 +15,10 @@
  *==========================================================*/
 
 /*==========================================================
- *                                                          
+ *
  *    File   : Bootconfig.h
- *    Purpose: 
- *                                                          
+ *    Purpose:
+ *
  *=========================================================*/
 
 #ifndef __BOOT_CONFIG_H
@@ -26,7 +26,7 @@
 
 //These must enabled to load the FPGA and FFE first if used in the rest of the code
 //Note: Enable only during debug. Should not enabled for Flashing the bin file since
-// the bootloaders loads them 
+// the bootloaders loads them
 #if defined(ENABLE_LOAD_FPGA)
 #error Set this here, not on command line.
 #endif
@@ -41,6 +41,6 @@ void fpga_load(const char* filename);
 void ffe_load(const char* filename);
 void start_load_from_flash(void);
 
-//#define LOAD_MERCED_1_1_FPGA 
+//#define LOAD_MERCED_1_1_FPGA
 
 #endif	// __BOOT_CONFIG_H

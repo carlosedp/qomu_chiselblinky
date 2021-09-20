@@ -90,7 +90,7 @@
 // #define UART_ID_SEMBUF       5   // Write data to semihost and buffer
 // #define UART_ID_USBSERIAL    6   // Write data to USB serial port
 #define DEBUG_UART  UART_ID_DISABLED   // Write data to USB serial port
-     
+
 #define USE_SEMIHOSTING     0       // 1 => use semihosting, 0 => use UART_ID_HW
 
 #define SIZEOF_DBGBUFFER    2048    // Number of characters in circular debug buffer

@@ -18,7 +18,7 @@
  *
  *    File   : RtosTask.h
  *    Purpose: Define the Task handles, queues and priorities
- *             
+ *
  *
  *=========================================================*/
 
@@ -38,16 +38,16 @@
 /* Enum so that all of these are visibile in 1 place */
 typedef enum {
     PRIORITY_LOWEST = 0,
-    
+
     PRIORITY_LOWER  = (configMAX_PRIORITIES/4),
-        
+
     PRIORITY_NORMAL = (configMAX_PRIORITIES/2),
-    
+
     PRIORITY_HIGH  = ((configMAX_PRIORITIES*3)/4),
-    
+
     PRIORITY_HAL_TIMER = configMAX_PRIORITIES-2,
     PRIORITY_LOADER = configMAX_PRIORITIES-1,
-    
+
     PRIORITY_HIGHEST = configMAX_PRIORITIES,
 } TaskPriorities;
 

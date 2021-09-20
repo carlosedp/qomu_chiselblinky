@@ -18,7 +18,7 @@
 #include "eoss3_hal_pad_config.h"
 #include "eoss3_hal_gpio.h"
 
-PadConfig pincfg_table[] = 
+PadConfig pincfg_table[] =
 {
   { // setup UART TX
     .ucPin = PAD_44,
@@ -63,7 +63,7 @@ PadConfig pincfg_table[] =
   },
 
   {
-    //Currently Pad 9 is not configured and has an internal pull-down and is 
+    //Currently Pad 9 is not configured and has an internal pull-down and is
     // connected to SWD_DATA that has an external pull-up
     //Pad 9 - remove default pull-down configuration, ensure pin is configured as input
     .ucPin = PAD_9,
@@ -74,7 +74,7 @@ PadConfig pincfg_table[] =
     .ucSpeed = PAD_SLEW_RATE_SLOW,
     .ucSmtTrg = PAD_SMT_TRIG_DIS
   },
-  
+
   {  // configure SCL0
     .ucPin = PAD_0,
     .ucFunc = PAD0_FUNC_SEL_SCL_0,
@@ -96,7 +96,7 @@ PadConfig pincfg_table[] =
     .ucSpeed = PAD_SLEW_RATE_SLOW,
     .ucSmtTrg = PAD_SMT_TRIG_DIS,
   },
-  
+
   // LEDS
    { // setup blue LED
     .ucPin = PAD_18,
@@ -131,7 +131,7 @@ PadConfig pincfg_table[] =
     .ucSpeed = PAD_SLEW_RATE_SLOW,
     .ucSmtTrg = PAD_SMT_TRIG_DIS,
   },
-  
+
    {
     // Pad6 is the user button
     .ucPin = PAD_6,
@@ -143,7 +143,7 @@ PadConfig pincfg_table[] =
     .ucSmtTrg = PAD_SMT_TRIG_DIS
   },
 
-  
+
    { // Pad 33 -- Test clock
     .ucPin = PAD_33,
     .ucFunc = PAD33_FUNC_SEL_FBIO_33,
@@ -154,7 +154,7 @@ PadConfig pincfg_table[] =
     .ucSpeed = PAD_SLEW_RATE_SLOW,
     .ucSmtTrg = PAD_SMT_TRIG_DIS,
   },
-  
+
   // SPI Master
    { // Pad 34 -- SPI Master CLK
     .ucPin = PAD_34,
@@ -193,7 +193,7 @@ PadConfig pincfg_table[] =
     .ucMode = PAD_MODE_INPUT_EN,
     .ucPull = PAD_NOPULL,
   },
-  
+
   //------------- USB ---------------//
    { // Pad 37 -- USB Pullup control
     .ucPin = PAD_37,

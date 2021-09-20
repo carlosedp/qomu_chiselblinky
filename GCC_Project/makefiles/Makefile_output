@@ -17,5 +17,5 @@ DELETEME := $(strip ${DELETEME})
 clean:
 	@echo Cleaning ...
 ifneq (,${DELETEME})
-	-$(HIDE)$(RM) $(DELETEME)   
+	-$(HIDE)$(RM) $(DELETEME)
 endif

@@ -56,7 +56,7 @@ SECTIONS
 	_sidata = __etext;
 
 
-	.data : 
+	.data :
 	{
 		__data_start__ = .;
 

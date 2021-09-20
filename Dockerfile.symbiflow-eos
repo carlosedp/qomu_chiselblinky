@@ -51,7 +51,7 @@ ENV USER=${USER}
 ARG UID=1000
 ARG GID=1000
 RUN addgroup --gid ${GID} ${USER}
-RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
+RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER}
 RUN chown -R ql:ql /qorc-sdk
 RUN chmod 755 /qorc-sdk
 
